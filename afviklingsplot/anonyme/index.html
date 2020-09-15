@@ -1,0 +1,715 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Avanceret pipeline, anonyme faser - x86prime</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#avanceret-pipeline-anonyme-faser" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="x86prime" class="md-header-nav__button md-logo" aria-label="x86prime">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            x86prime
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Avanceret pipeline, anonyme faser
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="x86prime" class="md-nav__button md-logo" aria-label="x86prime">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    x86prime
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../x86prime/" title="x86prime" class="md-nav__link">
+      x86prime
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Afviklingsplot
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Afviklingsplot" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Afviklingsplot
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Introduktion" class="md-nav__link">
+      Introduktion
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pipeline/" title="Simpel pipeline" class="md-nav__link">
+      Simpel pipeline
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../superscalar/" title="Superskalar" class="md-nav__link">
+      Superskalar
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Avanceret pipeline, anonyme faser
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Avanceret pipeline, anonyme faser" class="md-nav__link md-nav__link--active">
+      Avanceret pipeline, anonyme faser
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lngere-pipelines" class="md-nav__link">
+    Længere pipelines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eksempel-1-avanceret-pipeline" class="md-nav__link">
+    Eksempel 1: Avanceret pipeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abstraktion-samlet-indlsning-og-afkodning" class="md-nav__link">
+    Abstraktion, samlet indlæsning og afkodning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eksempel-2-mere-udrulning" class="md-nav__link">
+    Eksempel 2: Mere udrulning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ker" class="md-nav__link">
+    Køer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache-miss" class="md-nav__link">
+    Cache-miss
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kontrolafhngigheder" class="md-nav__link">
+    Kontrolafhængigheder
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../out-of-order/" title="Out-of-order" class="md-nav__link">
+      Out-of-order
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kontrol/" title="Kontrol afhængigheder" class="md-nav__link">
+      Kontrol afhængigheder
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lngere-pipelines" class="md-nav__link">
+    Længere pipelines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eksempel-1-avanceret-pipeline" class="md-nav__link">
+    Eksempel 1: Avanceret pipeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#abstraktion-samlet-indlsning-og-afkodning" class="md-nav__link">
+    Abstraktion, samlet indlæsning og afkodning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eksempel-2-mere-udrulning" class="md-nav__link">
+    Eksempel 2: Mere udrulning
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ker" class="md-nav__link">
+    Køer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache-miss" class="md-nav__link">
+    Cache-miss
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kontrolafhngigheder" class="md-nav__link">
+    Kontrolafhængigheder
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="avanceret-pipeline-anonyme-faser">Avanceret pipeline, anonyme faser</h1>
+<!-- Kunne være godt hvis der er tydelig forskel på stall og fase -->
+
+<p>Det er lidt træls, hvis man skal redegøre separat for hver enkelt fase en instruktion
+gennemløber i en moderne mikroarkitektur. Det skyldes at moderne mikroarkitekturer
+afvikler instruktioner i mange forskellige faser og disse faser kan tage forskellig længde.</p>
+<h2 id="lngere-pipelines">Længere pipelines</h2>
+<p>I moderne CMOS er det ikke realistisk at lave et cache-opslag på en enkelt cyklus.
+Typisk bruges tre cykler, som er fuldt pipelinet. Oftest er det heller ikke muligt at
+fuldt afkode en instruktion på en enkelt cyklus.</p>
+<p>For eksempel, i den simple pipeline ventede (stall) vi på at en load instruktion var helt færdig med <code>M</code> fasen før den næste instruktion gik i gang, med denne fase. I en moderne mikroarkitekturer kan vi have flere instruktioner, som er i gang med at læse eller skrive.</p>
+<p>Vi kunne løse dette ved at navngive hver enkelt af de ekstra faser der kræves og opskrive regler for hver af dem. Det bliver dog hurtigt meget kompliceret og bliver umuligt at overskue hvis vi pludselig skal holde styr på 3 forskellige navne for dele indhentning, 2 for afkodning, 3 for cache adgang osv. Det varer ikke længe før vi løber tør for bogstaver.</p>
+<p>I stedet vælger vi en simplere notation. Når vi opskriver faserne for en instruktionsklasse kan vi</p>
+<ul>
+<li>tilføje de ekstra <strong>anonyme</strong> faser som er påkrævet med <code>-</code> og</li>
+<li>angive hvor mange instruktioner der kan befinde sig i "mellemrummet" mellem
+  to navngivne faser.</li>
+</ul>
+<p>Vi kan betragte tidligere beskrivelser af begrænsninger som specialtilfælde,
+hvor <em>ingen</em> instruktioner må være i anonyme faser, dvs: <code>F-D: 0</code>, <code>D-X: 0</code>, <code>X-M: 0</code>, <code>M-W: 0</code>.
+Her forstås såleds at "<code>F-D: 0</code>" at der ingen instruktioner må være, som har gennemført fase
+F, men ikke påbegyndt D. Med andre ord: Fase <code>D</code> skal følge direkte efter fase <code>F</code> i afviklingsplottet</p>
+<h2 id="eksempel-1-avanceret-pipeline">Eksempel 1: Avanceret pipeline</h2>
+<p>Lad os nu definerer en mere avanceret (og realistisk) mikroarkitektur. Lad os først fastsætte begrænsningerne på vores instruktioner</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Instruktion</th>
+<th>Faser</th>
+<th>Dataafhængigheder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aritmetik</td>
+<td><code>op  a b</code></td>
+<td><code>F--D-XW</code></td>
+<td><code>depend(X,a), depend(X,b), produce(X,b)</code></td>
+</tr>
+<tr>
+<td>Læsning</td>
+<td><code>movq (a),b</code></td>
+<td><code>F--D-XM--W</code></td>
+<td><code>depend(X,a), produce(M+2,b)</code></td>
+</tr>
+<tr>
+<td>Skrivning</td>
+<td><code>movq b,(a)</code></td>
+<td><code>F--D-XM</code></td>
+<td><code>depend(X,a), depend(M,b)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Dataafhængighederne er de samme som tidligere, men den undtagelse at aritmetik instruktionerne, nu ikke har en <code>M</code> fase og derfor producerer deres resultat til i fase <code>X</code> til fase <code>W</code>.
+Det ses af faserne. Her har vi indsat to anonyme faser <code>-</code> efter <code>F</code> og <code>M</code> for at definerer cache adgang tager i alt 3 clock perioder. På samme måde kan vi se at afkodningen i <code>D</code> nu tager 2 clock perioder. Vi kan stadig lave stalls in disse anonyme faser, så det er muligt at der er flere end antallet mellem to givne faser. Ved læsning definerer vi at resultatet til <code>b</code> er klar 2 skridt efter </p>
+<p>Vi kan nu sætte de udvidede specifikationer for faserne som</p>
+<ul>
+<li>Tilgængelige ressourcer: <code>F:2</code>, <code>D:2</code>, <code>X:2</code>, <code>M:1</code>, <code>W:2</code></li>
+<li>Antal instruktioner under beregning: <code>F-D: 4</code>, <code>D-X: 2</code>, <code>M-W: 2</code></li>
+<li><code>inorder(F,D,X,M,W)</code></li>
+</ul>
+<p>Vi har det samme antal ressourcer som i vores superskalar arkitektur, men kan nu have 4 ekstra instruktioner i de anonyme faser mellem <code>F</code> og <code>D</code>; altså i gang med at blive indhentet. Der er 2 ekstra mellem <code>D</code> og <code>X</code>, samt 2 ekstra mellem <code>M</code> og <code>W</code>. Det er implicit at der ikke kan være nogen mellem <code>X</code> og <code>M</code> da det her kun tager en clock periode at beregne en værdi.
+Vi sikre stadig at alle faser afvikles in-order.</p>
+<p>Se følgende eksempel på en kørsel af et program; læg mærke til at vi har to iterationer at en opdatering at et array:</p>
+<pre><code class="text">                 012345678901234567    -- Vigtigste bemærkning
+movq (r10),r11   F--D-XM--W            -- produce(M+2,r11)
+addq $100,r11    F--D-----XW           -- depend(X,r11), produce(X,r11)
+movq r11,(r10)    F--D----XM           -- depend(M,r11), depend(M,r11)
+addq $8,r10       F--DDDDD-XW          -- produce(X,r10)
+movq (r10),r11     F--DDDD--XM--W      -- depend(X,r10), produce(M+2,r11)
+addq $100,r11      F------D-----XW     -- depend(X,r11), produce(X,r11)
+movq r11,(r10)      F-----DD----XM     -- depend(X,r10), depend(M,r11)
+addq $8,r10         F------DDDDD-XW    -- depend(X,r10), produce(X,r10)
+</code></pre>
+
+<p>Nu begynder der at ske en del. </p>
+<ol>
+<li>instruktion forløber normalt, da vi har en "tom" pipeline; dog bør noteres at værdien fra læsning først er klar i fase <code>W</code></li>
+<li>instruktion kan indlæses og afkodes samtidig med den første; vi har to enheder. Dog er den afhængig af at <code>r11</code> er klar i <code>X</code>, så denne fase kan tidligst være samtidig med <code>W</code> fra første instruktion. Vi laver altså en stall i den anonyme afkodningsfase.</li>
+<li>instruktion kan indlæses i anden fra anden periode og afkodning kan gå i gang som normalt. Vi har dog damme afhængighed som før of er nødt til at stall i <code>D</code>'s <code>-</code>.</li>
+<li>instruktion kan begynde indlæsning og afkodning samtidig med den tidligere. Vi har dog allerede fyldt anden del af <code>D</code>, så vi staller denne i <code>D</code>; se at der allerede er to streger i søjlen over efter <code>D</code>. Afhængigheden på <code>r10</code> er endnu ikke noget problem, men vi noterer at den opdaterer <code>r10</code> i <code>W</code> fasen.</li>
+<li>instruktion og vi starter anden iteration. Vi kan begynde indlæsningen som forventet, men er igen nødt til at stalle i <code>D</code> til vi har plads til at afkode. Vi har derefter en afhængighed på <code>r10</code> i <code>X</code> fasen, som vi så er nødt til at stalle en enkelt clock periode. Resten forløber som forventet, men indlæsning til <code>r11</code> er først klar til <code>W</code>.</li>
+<li>instruktion er vi nu nødt til at stalle i indlæsningen, <code>F</code>, da der ikke er plads i afkodningen. Derefter er vi igen nødt til at stalle efter <code>D</code> for at vente på vores afhængighed på <code>r11</code>; <code>X</code> kan ikke ligge tidligere en samtidig med <code>W</code> fra før.</li>
+<li>instruktion er igen en masse stall efter <code>F</code> og derefter <code>D</code>. Vi har først en afhængig på <code>r10</code> i <code>X</code> som kommer fra fjerde instruktion; vi har dog en in-order maskine og kan derfor ikke ligge adresseberegningen tidligere end <code>X</code> fra den forrige instruktion. Dette løser også afhængigheden på <code>r11</code> i <code>M</code>, da denne bliver produceret i forrige instruktions <code>W</code>.</li>
+<li>instruktion forsinkes både i <code>F</code> og <code>D</code>, som tidligere. Ellers er der ikke noget at bemærke.</li>
+</ol>
+<h2 id="abstraktion-samlet-indlsning-og-afkodning">Abstraktion, samlet indlæsning og afkodning</h2>
+<p>Anonyme faser kan også gøre det nemmere at se bort fra ting der ikke har interesse.
+For eksempel kan vi udelade afkodningstrinnet fra vores beskrivelse, da det altid følger direkte efter indhentning og har samme antal ressourcer. I stedet kan vi lave vores indlæsningstrin det længere og få samme afvikling:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Instruktion</th>
+<th>Faser</th>
+<th>Dataafhængigheder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aritmetik</td>
+<td><code>op  a b</code></td>
+<td><code>F----XW</code></td>
+<td><code>depend(X,a), depend(X,b), produce(X,b)</code></td>
+</tr>
+<tr>
+<td>Læsning</td>
+<td><code>movq (a),b</code></td>
+<td><code>F----XM--W</code></td>
+<td><code>depend(X,a), produce(M+2,b)</code></td>
+</tr>
+<tr>
+<td>Skrivning</td>
+<td><code>movq b,(a)</code></td>
+<td><code>F----XM</code></td>
+<td><code>depend(X,a), depend(M,b)</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Tilgængelige ressourcer: <code>F:2</code>, <code>X:2</code>, <code>M:1</code>, <code>W:2</code></li>
+<li>Antal instruktioner under beregning: <code>F-X: 8</code>, <code>M-W: 2</code></li>
+<li><code>inorder(F,D,X,M,W)</code></li>
+</ul>
+<p>Dette giver den samme afvikling, blot er <code>D</code> ikke nævnt, men til gængæld kan det være mere overskueligt.</p>
+<pre><code class="text">                 012345678901234567    -- Vigtigste bemærkning
+movq (r10),r11   F----XM--W            -- produce(M+2,r11)
+addq $100,r11    F--------XW           -- depend(X,r11), produce(X,r11)
+movq r11,(r10)    F-------XM           -- depend(M,r11), depend(M,r11)
+addq $8,r10       F--------XW          -- produce(X,r10)
+movq (r10),r11     F--------XM--W      -- depend(X,r10), produce(M+2,r11)
+addq $100,r11      F------------XW     -- depend(X,r11), produce(X,r11)
+movq r11,(r10)      F-----------XM     -- depend(X,r10), depend(M,r11)
+addq $8,r10         F------------XW    -- depend(X,r10), produce(X,r10)
+</code></pre>
+
+<p>Bemærk iøvrigt at selvom denne maskine kan håndtere 2 instruktioner per clk, så
+opnår den i ovenstående eksempel 4/9 IPC, dvs. mindre end ½ instruktion per clk.</p>
+<h2 id="eksempel-2-mere-udrulning">Eksempel 2: Mere udrulning</h2>
+<p>Det ser ud til at vi nu bare kan indhente instruktioner, som vi lyster. Så når vi nu er så godt i gang, kan vi tage en udrulning mere.</p>
+<pre><code class="text">                 012345678901234567890123    -- Vigtigste bemærkning
+movq (r10),r11   F----XM--W                  -- produce(M+2,r11)
+addq $100,r11    F--------XW                 -- depend(X,r11), produce(X,r11)
+movq r11,(r10)    F-------XM                 -- depend(M,r11), depend(M,r11)
+addq $8,r10       F--------XW                -- produce(X,r10)
+movq (r10),r11     F--------XM--W            -- depend(X,r10), produce(M+2,r11)
+addq $100,r11      F------------XW           -- depend(X,r11), produce(X,r11)
+movq r11,(r10)      F-----------XM           -- depend(X,r10), depend(M,r11)
+addq $8,r10         F------------XW          -- depend(X,r10), produce(X,r10)
+movq (r10),r11       F------------XM--W      -- depend(X,r10), produce(M+2,r11)
+addq $100,r11        FFFFF------------XW     -- depend(X,r11), produce(X,r11)
+movq r11,(r10)        FFFF------------XM     -- depend(X,r10), depend(M,r11)
+addq $8,r10               F------------XW    -- depend(X,r10), produce(X,r10)
+</code></pre>
+
+<ol>
+<li>instruktion kan starte indhentning som normalt. Hvis vi tæller antallet af streger over dette <code>F</code> (hold tungen lige i munden) tæller vi 8, som er plads til. I den efterfølgende periode (nummer 5) fortsætter først instruktion til <code>X</code>, så denne instruktion kan fortsætte sin indlæsning. Så skal vi bare huske vores afhængighed på <code>r10</code>.</li>
+<li>instruktion kan starte indhentning med den tidligere. Men nu er de anonyme faser fulde og vi bliver nødt til at blive i <code>F</code>. Afslutningen følger de tidligere iterationer.</li>
+<li>Vi kan starte indlæsningen i periode 5, men er igen nødt til at stalle i <code>F</code>.</li>
+<li>Nu er <code>F</code> også blevet fyldt og vi er nødt til forsinke selve indlæsningen. Det er først i periode 9 at anden instruktion komme ud af sin indlæsning og vi kan derfor starte denne.</li>
+</ol>
+<p>Det man især kan tage med fra ovenstående eksempel, er hvor mange instruktioner, som er i gang med at blive indlæst og hvor lang tid denne del tager sammenlignet med selve beregningen.</p>
+<h2 id="ker">Køer</h2>
+<p>Ofte indgår køer af instruktioner i en mikroarkitektur. Ikke så tit i en simpel skalar pipeline,
+men ofte i superskalare pipelines. For eksempel er det ofte en fordel med en kø mellem instruktionshentning
+og afkodning. For maskiner med variabel-længde instruktioner kan det være nødvendigt fordi afkoderen
+har en begrænsning på hvor mange instruktioner den kan håndtere, mens instruktionshentningen har en
+begrænsning udtrykt i bytes eller cache-blokke. Dermed kan man undgå at indlæse samme instruktion flere gange. Dette mis-match afføder et behov for at have en eller
+flere bytes/instruktioner i kø mellem de to trin.</p>
+<p>Vi vil modellerer en kø som et antal anonyme faser.
+For eksempel kan vi udtrykke en kø mellem F og D med plads til fire instruktioner som en ressource begrænsning: "F-D: 4"</p>
+<h2 id="cache-miss">Cache-miss</h2>
+<p>Vi modellerer lager-hierarkiet ved at holde rede på indholdet af systemets cache(s) instruktion
+for instruktion. Cache-miss inkluderes i modellen alene derved at det påvirker latens-tiden for
+de instruktioner, der læser fra lageret. Dette er en voldsom forsimpling. Vi ser således bort fra
+en række typiske begrænsninger:</p>
+<ul>
+<li>I en helt simpel pipeline vil man måske fryse selve pipelinen indtil data er ankommet.
+   Det vil have dårligere ydeevne, end blot at forøge latenstiden, som vi gør.</li>
+<li>Der kan være et begrænset antal overlappende læsninger i gang samtidigt.</li>
+<li>Der kan være et begrænset antal snavsede blokke som er smidt ud på et niveau
+   af hierarkiet og venter i kø på at blive skrevet til det underliggende niveau.</li>
+<li>Der kan være ressource konflikter ved tilgang til en cache; f.eks. kan man måske
+   ikke læse fra cachen, samtidigt med at data der hentes i respons på et tidligere
+   miss ankommer og skrives til cachen.</li>
+</ul>
+<p>Det ser vi alt sammen bort fra.</p>
+<p>Der antages copy-back caching med LRU replacement.</p>
+<h2 id="kontrolafhngigheder">Kontrolafhængigheder</h2>
+<p>Se <a href="../kontrol/">Kontrolafhængighed</a></p>
+<p>&nbsp;</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../superscalar/" title="Superskalar" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Superskalar
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../out-of-order/" title="Out-of-order" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Out-of-order
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
